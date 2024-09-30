@@ -53,9 +53,9 @@ const LanguagesAndSkills = () => {
           </div>
 
           {/* Skills Section */}
-          <div className="flex flex-col w-full max-w-[400px] bg-white p-6 rounded-lg shadow-lg">
+          <div className="flex flex-col w-full max-w-[800px] bg-white p-6 rounded-lg shadow-lg">
             <h3 className="font-semibold text-lg text-center">Skills</h3>
-            <div className="mt-4 space-y-4">
+            <div className="mt-4 grid grid-cols-2 gap-4">
               {[
                 {
                   icon: <FaReact className="text-3xl text-blue-500 mr-4" />,
