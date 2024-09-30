@@ -10,7 +10,7 @@ const Home = () => {
           backgroundImage: `url('/image.jpg')`, // Adjust this path as necessary
           backgroundSize: "cover", // Scale image to cover the left side
           backgroundRepeat: "no-repeat", // Prevent image from repeating
-          backgroundPosition: "center", // Center the image
+          backgroundPosition: "center",
         }}
       ></div>
 
