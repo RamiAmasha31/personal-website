@@ -26,7 +26,7 @@ const projectsData = [
   {
     title: "Shannon Sampling Theorem",
     description: "Project demonstrating the theorem using Python.",
-    githubLink: "https://github.com/yourusername/shannon-sampling-theorem",
+    githubLink: "https://github.com/RamiAmasha31/Shannon-Sampling-Theorem",
   },
   {
     title: "Restaurant Website",
