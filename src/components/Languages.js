@@ -11,6 +11,7 @@ import {
   FaDatabase,
 } from "react-icons/fa"; // Importing necessary icons
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"; // Importing star icons
+import { DiNodejsSmall } from "react-icons/di"; // Importing Node.js icon
 
 const LanguagesAndSkills = () => {
   // Function to generate star ratings
@@ -98,6 +99,12 @@ const LanguagesAndSkills = () => {
                 {
                   icon: <FaDatabase className="text-3xl text-green-500 mr-4" />,
                   label: "MySQL",
+                },
+                {
+                  icon: (
+                    <DiNodejsSmall className="text-3xl text-green-500 mr-4" />
+                  ),
+                  label: "Node.js", // Added Node.js skill
                 },
               ].map(({ icon, label }) => (
                 <div className="flex items-center" key={label}>
