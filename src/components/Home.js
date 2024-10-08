@@ -13,7 +13,7 @@ const Home = () => {
 
       {/* Left side for the image */}
       <div
-        className="flex-none w-full md:w-2/5 h-64 md:h-full bg-cover bg-center"
+        className="flex-none w-full md:w-2/5 h-96 md:h-full bg-cover bg-center"
         style={{
           backgroundImage: `url('/image.jpg')`, // Adjust this path as necessary
           backgroundSize: "cover", // Scale image to cover the left side

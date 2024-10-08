@@ -76,7 +76,7 @@ const Navbar = () => {
 
       {/* Full-Screen Menu for Mobile View */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-80 flex flex-col items-center justify-center z-20">
+        <div className="fixed inset-0 bg-gray-700 bg-opacity-80 flex flex-col items-center justify-center z-20">
           <button
             className="absolute top-4 right-4 text-white"
             onClick={toggleMenu}
