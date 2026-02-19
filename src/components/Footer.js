@@ -1,122 +1,169 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaHeart, FaArrowUp } from "react-icons/fa";
 import { Link } from "react-scroll";
+import { motion } from "framer-motion";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const quickLinks = [
+    { to: "home", label: "Home" },
+    { to: "about", label: "About" },
+    { to: "experience", label: "Experience" },
+    { to: "education", label: "Education" },
+    { to: "languages", label: "Skills" },
+    { to: "projects", label: "Projects" },
+  ];
+
+  const socialLinks = [
+    {
+      icon: <FaGithub className="text-xl" />,
+      href: "https://github.com/RamiAmasha31",
+      label: "GitHub",
+      color: "hover:text-white",
+    },
+    {
+      icon: <FaLinkedin className="text-xl" />,
+      href: "https://www.linkedin.com/in/rami-amasha81/",
+      label: "LinkedIn",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: <FaEnvelope className="text-xl" />,
+      href: "mailto:ramiamasha84@gmail.com",
+      label: "Email",
+      color: "hover:text-primary-400",
+    },
+  ];
+
   return (
-    <footer className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-16 border-t border-blue-500/20">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* About Section */}
-          <div>
-            <h3 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Rami Amasha</h3>
-            <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200 leading-relaxed text-lg">
-              Software Engineer & Applied Mathematician passionate about creating innovative solutions through code and mathematical modeling.
-            </p>
-          </div>
+    <footer className="relative overflow-hidden">
+      {/* Top wave decoration */}
+      <div className="absolute top-0 left-0 right-0">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path
+            d="M0 120L48 110C96 100 192 80 288 73.3C384 66.7 480 73.3 576 83.3C672 93.3 768 106.7 864 103.3C960 100 1056 80 1152 70C1248 60 1344 60 1392 60L1440 60V0H1392C1344 0 1248 0 1152 0C1056 0 960 0 864 0C768 0 672 0 576 0C480 0 384 0 288 0C192 0 96 0 48 0H0V120Z"
+            fill="url(#footerGrad)"
+            fillOpacity="0.05"
+          />
+          <defs>
+            <linearGradient id="footerGrad" x1="0" y1="0" x2="1440" y2="0">
+              <stop offset="0%" stopColor="#6366f1" />
+              <stop offset="100%" stopColor="#8b5cf6" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-xl font-semibold mb-6 text-blue-400">Quick Links</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  to="home"
-                  smooth={true}
-                  className="text-blue-400 hover:text-cyan-400 cursor-pointer transition-colors text-lg flex items-center group"
-                >
-                  <span className="mr-2 text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="about"
-                  smooth={true}
-                  className="text-blue-400 hover:text-cyan-400 cursor-pointer transition-colors text-lg flex items-center group"
-                >
-                  <span className="mr-2 text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="experience"
-                  smooth={true}
-                  className="text-blue-400 hover:text-cyan-400 cursor-pointer transition-colors text-lg flex items-center group"
-                >
-                  <span className="mr-2 text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-                  Experience
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="projects"
-                  smooth={true}
-                  className="text-blue-400 hover:text-cyan-400 cursor-pointer transition-colors text-lg flex items-center group"
-                >
-                  <span className="mr-2 text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-                  Projects
-                </Link>
-              </li>
-            </ul>
-          </div>
+      <div className="relative z-10 bg-gradient-to-b from-transparent to-[#030014] pt-20 pb-8">
+        <div className="container mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-primary-500/25">
+                  R
+                </div>
+                <span className="text-xl font-display font-bold text-white">
+                  Rami<span className="text-primary-400">.</span>
+                </span>
+              </div>
+              <p className="text-gray-500 leading-relaxed mb-6">
+                Software Engineer & Applied Mathematician passionate about
+                creating innovative solutions through code and mathematical
+                modeling.
+              </p>
+              {/* Social Links */}
+              <div className="flex gap-3">
+                {socialLinks.map((link) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 ${link.color} transition-all duration-300`}
+                    aria-label={link.label}
+                  >
+                    {link.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-xl font-semibold mb-6 text-blue-400">Contact</h4>
-            <div className="space-y-4">
-              <div className="flex items-center group">
-                <FaEnvelope className="mr-4 text-blue-400 text-xl group-hover:scale-110 transition-transform" />
-                <a href="mailto:ramiamasha84@gmail.com" className="text-lg text-blue-400 hover:text-cyan-400 transition-colors">
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">
+                Quick Links
+              </h4>
+              <ul className="space-y-3">
+                {quickLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      smooth={true}
+                      offset={-80}
+                      className="text-gray-500 hover:text-primary-400 cursor-pointer transition-colors duration-300 text-sm flex items-center gap-2 group"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-primary-400 group-hover:w-2 transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">
+                Get In Touch
+              </h4>
+              <div className="space-y-4">
+                <a
+                  href="mailto:ramiamasha84@gmail.com"
+                  className="flex items-center gap-3 text-gray-500 hover:text-primary-400 transition-colors duration-300 group text-sm"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary-500/30 transition-colors">
+                    <FaEnvelope className="text-sm" />
+                  </div>
                   ramiamasha84@gmail.com
                 </a>
-              </div>
-              <div className="flex items-center group">
-                <FaPhone className="mr-4 text-blue-400 text-xl group-hover:scale-110 transition-transform" />
-                <span className="text-lg text-blue-400">0548989367</span>
-              </div>
-              <div className="flex items-center group">
-                <FaMapMarkerAlt className="mr-4 text-blue-400 text-xl group-hover:scale-110 transition-transform" />
-                <span className="text-lg text-blue-400">Golan Heights, Israel</span>
+                <div className="flex items-center gap-3 text-gray-500 text-sm">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <FaPhone className="text-sm" />
+                  </div>
+                  0548989367
+                </div>
+                <div className="flex items-center gap-3 text-gray-500 text-sm">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <FaMapMarkerAlt className="text-sm" />
+                  </div>
+                  Golan Heights, Israel
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Social Media & Copyright */}
-        <div className="border-t border-blue-500/30 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex space-x-8 mb-6 md:mb-0">
-              <a
-                href="https://github.com/RamiAmasha31"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-125"
-                aria-label="GitHub"
-              >
-                <FaGithub className="h-8 w-8" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rami-amasha81/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-125"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="h-8 w-8" />
-              </a>
-              <a
-                href="mailto:ramiamasha84@gmail.com"
-                className="text-blue-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-125"
-                aria-label="Email"
-              >
-                <FaEnvelope className="h-8 w-8" />
-              </a>
-            </div>
-            <p className="text-blue-400 text-lg flex items-center">
-              &copy; {new Date().getFullYear()} Rami Amasha. Made with <FaHeart className="text-red-500 mx-2 animate-pulse" /> All Rights Reserved.
+          {/* Bottom Bar */}
+          <div className="border-t border-white/[0.05] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-600 text-sm flex items-center gap-1">
+              © {currentYear} Rami Amasha. Made with{" "}
+              <FaHeart className="text-red-500 text-xs animate-pulse" />{" "}
+              All Rights Reserved.
             </p>
+            <Link
+              to="home"
+              smooth={true}
+              className="cursor-pointer"
+            >
+              <motion.div
+                whileHover={{ y: -3 }}
+                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-primary-400 hover:border-primary-500/30 transition-all duration-300"
+              >
+                <FaArrowUp className="text-sm" />
+              </motion.div>
+            </Link>
           </div>
         </div>
       </div>
