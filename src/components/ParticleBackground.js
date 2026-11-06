@@ -1,11 +1,17 @@
 import React, { useEffect, useRef } from "react";
 
+const DARK_COLORS = { mint: "110, 245, 217", iris: "185, 166, 255", line: "124, 200, 255" };
+const LIGHT_COLORS = { mint: "10, 143, 122", iris: "107, 70, 229", line: "31, 111, 224" };
+
+const isLightTheme = () => document.documentElement.dataset.theme === "light";
+
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let animationFrameId;
     let particles = [];
     let mouse = { x: null, y: null, radius: 150 };
@@ -35,13 +41,11 @@ const ParticleBackground = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 1.6 + 0.4;
+        this.speedX = (Math.random() - 0.5) * 0.35;
+        this.speedY = (Math.random() - 0.5) * 0.35;
         this.opacity = Math.random() * 0.5 + 0.1;
-        this.color = Math.random() > 0.5 
-          ? `rgba(99, 102, 241, ${this.opacity})` 
-          : `rgba(139, 92, 246, ${this.opacity})`;
+        this.isMint = Math.random() > 0.5;
       }
 
       update() {
@@ -68,7 +72,8 @@ const ParticleBackground = () => {
       }
 
       draw() {
-        ctx.fillStyle = this.color;
+        const colors = isLightTheme() ? LIGHT_COLORS : DARK_COLORS;
+        ctx.fillStyle = `rgba(${this.isMint ? colors.mint : colors.iris}, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -78,8 +83,8 @@ const ParticleBackground = () => {
     const init = () => {
       particles = [];
       const numberOfParticles = Math.min(
-        Math.floor((canvas.width * canvas.height) / 12000),
-        150
+        Math.floor((canvas.width * canvas.height) / 16000),
+        110
       );
       for (let i = 0; i < numberOfParticles; i++) {
         particles.push(new Particle());
@@ -87,6 +92,7 @@ const ParticleBackground = () => {
     };
 
     const connectParticles = () => {
+      const { line } = isLightTheme() ? LIGHT_COLORS : DARK_COLORS;
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
@@ -94,8 +100,8 @@ const ParticleBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            const opacity = (1 - distance / 120) * 0.15;
-            ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+            const opacity = (1 - distance / 120) * 0.12;
+            ctx.strokeStyle = `rgba(${line}, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -106,18 +112,26 @@ const ParticleBackground = () => {
       }
     };
 
-    const animate = () => {
+    const drawFrame = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((particle) => {
-        particle.update();
+        if (!reducedMotion) particle.update();
         particle.draw();
       });
       connectParticles();
+    };
+
+    const animate = () => {
+      drawFrame();
       animationFrameId = requestAnimationFrame(animate);
     };
 
     init();
-    animate();
+    if (reducedMotion) {
+      drawFrame();
+    } else {
+      animate();
+    }
 
     return () => {
       cancelAnimationFrame(animationFrameId);

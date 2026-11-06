@@ -1,65 +1,56 @@
-# Rami Amasha — Personal Portfolio Website
+# Rami Amasha — Personal Website
 
-A modern, high-performance personal portfolio website showcasing my professional experience, education, skills, and projects as a Software Engineer and Applied Mathematician.
+Portfolio of Rami Amasha, Backend & DevOps Engineer. Live at [rami-amasha.vercel.app](https://rami-amasha.vercel.app).
 
-## ✨ Features
+## Features
 
-- **Interactive Particle Background** — mouse-reactive particle network with dynamic connections
-- **Scroll-Reveal Animations** — elements animate into view as you scroll using IntersectionObserver
-- **Typewriter Effect** — hero section cycles through professional roles
-- **Glassmorphism UI** — frosted-glass cards with subtle transparency and borders
-- **Project Filtering** — filter projects by category with animated transitions
-- **Animated Timeline** — experience section with glowing timeline design
-- **Progress Bars** — animated language proficiency indicators
-- **Responsive Design** — fully optimized for mobile, tablet, and desktop
-- **Lazy Loading** — below-the-fold sections load on demand for faster initial page load
-- **Preloader Animation** — polished loading screen on first visit
-- **Back-to-Top Button** — appears on scroll with smooth animation
-- **Dark Theme** — deep space color palette with indigo/purple accents
+- **Dark and light themes** — follows the system setting until the visitor picks one with the navbar toggle, then remembers it
+- **Aurora background** — drifting color fields, a fading grid and a mouse-reactive particle network
+- **Glass cards** — a glow and gradient border follow the cursor
+- **Terminal hero** — current role and focus shown as a shell session, with a typewriter role line
+- **Scroll-reveal animations** — sections animate in using IntersectionObserver
+- **Responsive and accessible** — works from phone to desktop, keyboard-focusable navigation, respects reduced-motion settings
+- **Lazy loading** — below-the-fold sections load on demand
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **React 18** — component-based UI
-- **Tailwind CSS 3** — utility-first styling
-- **Framer Motion** — smooth animations and transitions
-- **React Icons** — icon library
-- **React Scroll** — smooth scrolling navigation
+- **React 18**
+- **Tailwind CSS 3** — the color tokens are in `tailwind.config.js`, and their values for each theme are in `src/index.css`
+- **Framer Motion**
+- **React Icons**
+- **React Scroll**
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-
-# Build for production
-npm run build
+npm install     # Install dependencies
+npm start       # Start the development server
+npm run build   # Build for production
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
 ├── components/
+│   ├── ui.js                   # Shared Reveal, SectionHeader and Card
 │   ├── ParticleBackground.js   # Interactive particle canvas
-│   ├── Navbar.js               # Sticky nav with scroll effects
-│   ├── Home.js                 # Hero section with typewriter
-│   ├── About.js                # About me with stats grid
-│   ├── Experience.js           # Timeline layout
+│   ├── Navbar.js               # Floating nav with active section
+│   ├── Home.js                 # Hero with terminal and tech marquee
+│   ├── About.js                # Summary, stats and focus areas
+│   ├── Experience.js           # Work history
 │   ├── Education.js            # Dual degree cards
-│   ├── Languages.js            # Skills & language proficiency
-│   ├── Projects.js             # Filterable project grid
-│   └── Footer.js               # Footer with wave decoration
+│   ├── Languages.js            # Technical skills and spoken languages
+│   ├── Projects.js             # Final projects and other work
+│   └── Footer.js               # Contact section and footer
 ├── hooks/
 │   └── useScrollReveal.js      # IntersectionObserver hook
 ├── App.js                      # Main app with lazy loading
-├── App.css                     # Global animations & effects
-└── index.css                   # Tailwind base & components
+├── App.css                     # Page background and reveal animations
+└── index.css                   # Tailwind base and component classes
 ```
 
-## 📬 Contact
+## Contact
 
 - **Email:** ramiamasha84@gmail.com
 - **GitHub:** [RamiAmasha31](https://github.com/RamiAmasha31)

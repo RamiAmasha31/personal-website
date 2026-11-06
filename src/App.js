@@ -17,9 +17,7 @@ const Footer = lazy(() => import("./components/Footer"));
 // Loading fallback
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-20">
-    <div className="relative">
-      <div className="w-12 h-12 rounded-full border-2 border-primary-500/20 border-t-primary-500 animate-spin" />
-    </div>
+    <div className="w-10 h-10 rounded-full border-2 border-primary-300/20 border-t-primary-300 animate-spin" />
   </div>
 );
 
@@ -38,7 +36,7 @@ const App = () => {
 
   // Preloader
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
+    const timer = setTimeout(() => setIsLoading(false), 900);
     return () => clearTimeout(timer);
   }, []);
 
@@ -55,33 +53,33 @@ const App = () => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[100] bg-[#030014] flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-canvas flex items-center justify-center"
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 1.2, opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl shadow-2xl shadow-primary-500/30 animate-pulse">
+            <div className="text-center">
+              <div className="brand-mark w-16 h-16 mx-auto mb-5 text-xl rounded-2xl animate-pulse">
                 RA
               </div>
-              <div className="w-32 h-1 bg-white/10 rounded-full overflow-hidden mx-auto">
+              <div className="w-32 h-0.5 bg-white/10 rounded-full overflow-hidden mx-auto">
                 <motion.div
                   initial={{ x: "-100%" }}
                   animate={{ x: "100%" }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-full h-full bg-gradient-to-r from-primary-500 to-purple-500"
+                  transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-full h-full bg-primary-300"
                 />
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="relative noise-bg grid-bg overflow-x-hidden">
-        {/* Particle Background */}
+      <div className="relative noise-bg overflow-x-hidden">
+        {/* Page background */}
+        <div className="aurora" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="grid-overlay" aria-hidden="true" />
         <ParticleBackground />
 
         {/* Main Content */}
@@ -106,7 +104,7 @@ const App = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               onClick={scrollToTop}
-              className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-xl bg-gradient-to-br from-primary-600 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-1 transition-all duration-300"
+              className="brand-mark fixed bottom-6 right-6 z-50 w-12 h-12 shadow-lg shadow-primary-300/20 hover:-translate-y-1 transition-transform duration-300"
               aria-label="Back to top"
             >
               <FaArrowUp />

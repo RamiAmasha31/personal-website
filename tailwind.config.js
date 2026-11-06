@@ -4,98 +4,73 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "system-ui", "sans-serif"],
+        sans: ["Geist", "system-ui", "sans-serif"],
+        mono: ["Geist Mono", "ui-monospace", "SFMono-Regular", "monospace"],
+        serif: ["Instrument Serif", "Georgia", "serif"],
       },
       colors: {
-        primary: {
-          50: "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
-          950: "#1e1b4b",
+        // Theme-aware tokens: the values live in src/index.css and change with
+        // data-theme. "white" is the main text color, so it turns dark in light mode.
+        white: "rgb(var(--fg) / <alpha-value>)",
+        canvas: "rgb(var(--canvas) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        shade: "rgb(var(--shade) / <alpha-value>)",
+        slate: {
+          300: "rgb(var(--text-1) / <alpha-value>)",
+          400: "rgb(var(--text-2) / <alpha-value>)",
         },
-        accent: {
-          400: "#34d399",
-          500: "#10b981",
-          600: "#059669",
+        // Fixed dark, used for text on the pastel gradient in both themes
+        ink: {
+          950: "#05060a",
+        },
+        // Main accent: electric mint (deep teal in light mode)
+        primary: {
+          50: "#ecfffa",
+          100: "rgb(var(--primary-100) / <alpha-value>)",
+          200: "rgb(var(--primary-200) / <alpha-value>)",
+          300: "rgb(var(--primary-300) / <alpha-value>)",
+          400: "#3ce8c8",
+          500: "#16cfaf",
+          600: "#0aa78e",
+          700: "#0c8573",
+          800: "#0f695d",
+          900: "#11564d",
+          950: "#03332e",
+        },
+        // Secondary accent: soft iris
+        iris: {
+          300: "rgb(var(--iris-300) / <alpha-value>)",
+          400: "#a894ff",
+          500: "#8b72ff",
+          600: "#6f52f5",
+        },
+        // Highlight: rose
+        flare: {
+          300: "#ffb3cf",
+          400: "#ff85af",
+          500: "#ff5c93",
+          600: "#e93d79",
         },
       },
       animation: {
-        "float": "float 6s ease-in-out infinite",
-        "float-delayed": "float 6s ease-in-out 2s infinite",
-        "float-slow": "float 8s ease-in-out infinite",
-        "pulse-glow": "pulseGlow 2s ease-in-out infinite",
-        "gradient": "gradient 8s ease infinite",
-        "slide-up": "slideUp 0.6s ease-out",
-        "slide-down": "slideDown 0.3s ease-out",
-        "fade-in": "fadeIn 0.6s ease-out",
-        "scale-in": "scaleIn 0.5s ease-out",
         "spin-slow": "spin 8s linear infinite",
-        "bounce-gentle": "bounceGentle 2s ease-in-out infinite",
-        "shimmer": "shimmer 2s linear infinite",
-        "morph": "morph 8s ease-in-out infinite",
-        "glow": "glow 2s ease-in-out infinite alternate",
+        holo: "holoShift 8s ease-in-out infinite alternate",
+        drift: "drift 26s ease-in-out infinite alternate",
+        marquee: "marquee 45s linear infinite",
       },
       keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
+        holoShift: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" },
         },
-        pulseGlow: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(99, 102, 241, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(99, 102, 241, 0.6)" },
+        drift: {
+          "0%": { transform: "translate3d(0, 0, 0) scale(1)" },
+          "100%": { transform: "translate3d(6vw, 5vh, 0) scale(1.15)" },
         },
-        gradient: {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
-        slideUp: {
-          "0%": { transform: "translateY(30px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        slideDown: {
-          "0%": { transform: "translateY(-10px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        scaleIn: {
-          "0%": { transform: "scale(0.9)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        bounceGentle: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        morph: {
-          "0%, 100%": { borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" },
-          "50%": { borderRadius: "30% 60% 70% 40% / 50% 60% 30% 60%" },
-        },
-        glow: {
-          "0%": { boxShadow: "0 0 20px rgba(99, 102, 241, 0.2)" },
-          "100%": { boxShadow: "0 0 40px rgba(99, 102, 241, 0.4), 0 0 80px rgba(99, 102, 241, 0.1)" },
-        },
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "mesh-gradient": "radial-gradient(at 40% 20%, hsla(240,100%,74%,0.1) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(189,100%,56%,0.1) 0px, transparent 50%), radial-gradient(at 0% 50%, hsla(355,100%,93%,0.05) 0px, transparent 50%)",
-      },
-      backdropBlur: {
-        xs: "2px",
       },
     },
   },
